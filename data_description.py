@@ -130,38 +130,38 @@ if __name__ == '__main__':
     draw(facebook, git)
     draw_class_distribution(facebook, git)
 
-    # print(f"Facebook Graph info:\n{nx.info(facebook)}")
-    # print(f"Git Graph info\n{nx.info(git)}")
-    #
-    # print(f"No. of unique Facebook pages: {facebook.number_of_nodes()}")
-    # print(f"No. of unique GitHub users: {git.number_of_nodes()}")
-    #
-    # print(f"No. of communities in Facebook network: {nx.number_connected_components(facebook)}")
-    # print(f"No. of communities in GitHub network: {nx.number_connected_components(git)}")
-    #
-    # facebook_density = nx.density(facebook)
-    # git_density = nx.density(git)
-    # print("Facebook network density:", facebook_density)
-    # print("GitHub network density:", git_density)
+    print(f"Facebook Graph info:\n{nx.info(facebook)}")
+    print(f"Git Graph info\n{nx.info(git)}")
 
-    # facebook_diameter = nx.diameter(facebook)
-    # git_diameter = nx.diameter(git)
-    # print(f"Diameter of Facebook Network is: {facebook_diameter}")
-    # print(f"Diameter of GitHub Network is: {git_diameter}")
+    print(f"No. of unique Facebook pages: {facebook.number_of_nodes()}")
+    print(f"No. of unique GitHub users: {git.number_of_nodes()}")
 
-    # facebook_triadic_closure = nx.transitivity(facebook)
-    # git_triadic_closure = nx.transitivity(git)
-    # print(f"Triadic closure of Facebook Network: {facebook_triadic_closure}")
-    # print(f"Triadic closure of GitHub Network: {git_triadic_closure}")
+    print(f"No. of communities in Facebook network: {nx.number_connected_components(facebook)}")
+    print(f"No. of communities in GitHub network: {nx.number_connected_components(git)}")
 
-    # pages, developers = get_nodes_with_biggest_degree(facebook, git)
-    # print(f"Pages with biggest degree in Facebook are: {pages}")
-    # print(f"Developers with biggest degree on GitHub are: {developers}")
+    facebook_density = nx.density(facebook)
+    git_density = nx.density(git)
+    print("Facebook network density:", facebook_density)
+    print("GitHub network density:", git_density)
 
-    # pages, developers = get_nodes_with_biggest_eigenvector(facebook, git)
-    # print(f"Pages with biggest eigenvector centrality on Facebook are: {pages}")
-    # print(f"Developers with biggest eigenvector centrality on GitHub: {developers}")
+    facebook_diameter = nx.diameter(facebook)
+    git_diameter = nx.diameter(git)
+    print(f"Diameter of Facebook Network is: {facebook_diameter}")
+    print(f"Diameter of GitHub Network is: {git_diameter}")
 
-    # pages, developers = get_nodes_with_biggest_betweenness(facebook, git)
-    # print(f"Pages with biggest betweenness centrality on Facebook are: {pages}")
-    # print(f"Developers with biggest betweenness centrality on GitHub: {developers}")
+    facebook_triadic_closure = nx.transitivity(facebook)
+    git_triadic_closure = nx.transitivity(git)
+    print(f"Triadic closure of Facebook Network: {facebook_triadic_closure}")
+    print(f"Triadic closure of GitHub Network: {git_triadic_closure}")
+
+    pages, developers = get_nodes_with_biggest_degree(facebook, git)
+    print(f"Pages with biggest degree in Facebook are: {pages}")
+    print(f"Developers with biggest degree on GitHub are: {developers}")
+
+    pages, developers = get_nodes_with_biggest_eigenvector(facebook, git)
+    print(f"Pages with biggest eigenvector centrality on Facebook are: {pages}")
+    print(f"Developers with biggest eigenvector centrality on GitHub: {developers}")
+
+    pages, developers = get_nodes_with_biggest_betweenness(facebook, git)
+    print(f"Pages with biggest betweenness centrality on Facebook are: {pages}")
+    print(f"Developers with biggest betweenness centrality on GitHub: {developers}")
