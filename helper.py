@@ -74,6 +74,22 @@ def create_samples(g):
     return g, df
 
 
+def get_randomwalk(G, node, path_length):
+    random_walk = [node]
+
+    for i in range(path_length - 1):
+        temp = list(G.neighbors(node))
+        temp = list(set(temp) - set(random_walk))
+        if len(temp) == 0:
+            break
+
+        random_node = random.choice(temp)
+        random_walk.append(random_node)
+        node = random_node
+
+    return random_walk
+
+
 def create_test_data(list):
     y_test = []
     for u, v, p in list:
@@ -89,7 +105,7 @@ def create_index_of_nodes(nodes):
 
 
 def rwr(x, T, R=0.2, max_iters=100):
-    '''
+    """
     This function will perform the random walk with restart algorithm on a given vector x and the associated
     transition matrix of the network
 
@@ -101,7 +117,7 @@ def rwr(x, T, R=0.2, max_iters=100):
 
     returns:
         This function will return the result vector x
-    '''
+    """
 
     old_x = x
     err = 1.
@@ -116,7 +132,7 @@ def rwr(x, T, R=0.2, max_iters=100):
 
 
 def run_rwr(g, R, max_iters):
-    '''
+    """
     This function will run the `rwr` on a network
 
     args:
@@ -125,9 +141,9 @@ def run_rwr(g, R, max_iters):
         max_iters (Integer) : The maximum number of iterations
 
     returns:
-        This fuunction will return a numpy array of affinities where each element in the array will represent
+        This function will return a numpy array of affinities where each element in the array will represent
         the similarity between two nodes
-    '''
+    """
 
     A = nx.adjacency_matrix(g, weight='weight')
     m, n = A.shape
