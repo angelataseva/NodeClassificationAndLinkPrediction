@@ -70,7 +70,7 @@ def classification_with_pretrained_vectors(graph, type):
         labels.append(graph.nodes[node]['type'])
 
     labels = convert_labels(labels, type)
-    x_train, x_test, y_train, y_test = train_test_split(data, labels, test_size=0.2, random_state=36)
+    x_train, x_test, y_train, y_test = train_test_split(data, labels, test_size=0.2, random_state=36, shuffle=True)
 
     print(f"Classification results for {type} dataset with pretrained vectors:")
     print_results(x_train, x_test, y_train, y_test)
@@ -79,13 +79,13 @@ def classification_with_pretrained_vectors(graph, type):
 def classification_with_node2vec(graph, type):
     n2v_obj = Node2Vec(graph, dimensions=10, walk_length=5, num_walks=15, p=1, q=1, workers=1)
     n2v_model = n2v_obj.fit()
-    embeddings = [list(n2v_model.wv.get_vector(n)) for n in graph.nodes]
-    embeddings = np.array(embeddings)
+    data = [list(n2v_model.wv.get_vector(n)) for n in graph.nodes]
+    data = np.array(data)
 
     labels = [graph.nodes[node]['type'] for node in graph.nodes]
     labels = convert_labels(labels, type)
 
-    x_train, x_test, y_train, y_test = train_test_split(embeddings, labels, test_size=0.2, random_state=36)
+    x_train, x_test, y_train, y_test = train_test_split(data, labels, test_size=0.2, random_state=36, shuffle=True)
 
     print(f"Classification results for {type} dataset with Nodе2Vec vectors:")
     print_results(x_train, x_test, y_train, y_test)
@@ -97,7 +97,7 @@ def classification_with_deepwalk(graph, type):
     random_walks = []
     for n in tqdm(all_nodes):
         for i in range(5):
-            random_walks.append(get_randomwalk(graph, n, 10))
+            random_walks.append(get_randomwalk(graph, n, 15))
 
     model = Word2Vec(window=4, sg=1, hs=0, negative=10, alpha=0.03, min_alpha=0.0007, seed=14)
     model.build_vocab(random_walks, progress_per=2)
